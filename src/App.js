@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import Login from './Components/Login';
+import Dashboard from './Components/Dashboard';
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
+    let routes = (
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Redirect to="/" />
+      </Switch>
+    );
+    if (this.props.usersData) {
+      routes = (
+        <Switch>
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Redirect to="/dashboard" />
+        </Switch>
+      )
+    }
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        {routes}
+      </React.Fragment>
     );
   }
 }
+const mapStateToProps = state => ({
+  usersData: state.currentUser
+})
 
-export default App;
+export default withRouter(connect(mapStateToProps)(App));

@@ -12,3 +12,56 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width:400px;
+  background-color: rgba(0,0,0,.8);
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 10px
+}
+.box .input-box{
+  position: relative;
+}
+.box .input-box input{
+  display: block;
+  width: 100%;
+  padding: 7px;
+  font-size: 15px;
+  margin-bottom: 30px;
+  outline: none;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color:#fff
+}
+.box h3{
+  color: #fff;
+  margin: 0 0 30px;
+  padding: 0;
+}
+.box .input-box label{
+  position: absolute;
+  top:-5px;
+  left: 0;
+  padding: 10px 0;
+  transition: .5s;
+  color:#fff;
+  pointer-events: none;
+  
+}
+.box .input-box input:focus ~label,
+.box .input-box input:valid ~label{
+  top: -20px;
+  color: #007bff
+}
+.table th{
+  color: #007bff
+}
+.table th, .table td{
+  text-align: center;
+}
+
